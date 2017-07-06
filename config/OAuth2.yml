@@ -1,0 +1,10 @@
+redirect_url: 'http://object.com'
+
+log:
+    log_file: 'logs/main.log'
+    file_mode: a
+    log_level: DEBUG
+    logger: main_logger
+    datefmt: '%d %b. %Y %H:%M:%S'
+    verbose: True
+    

@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    style
+      include main.css
+    title Account Linking
+  body
+    div.container
+      form#contact(name="input" method="post" enctype="application/x-www-form-urlencoded")
+        h3 You are linking account with #{title}
+        h4 Please input your Ralinwi account:
+        fieldset
+          input(name="username" placeholder="your username" type="text" tabindex="1" required autofocus)
+        fieldset
+          input(name="password" placeholder="your password" type="password" tabindex="2" required)
+        fieldset
+          input(name="clientId" type="hidden" value=""+client_id)
+        fieldset
+          input(name="redirectUri" type="hidden" value=""+redirect_uri)
+        fieldset
+          button#contact-submit(name="submit" type="submit" data-submit="...Sending") Submit
+        p.copyright Designed by #[a(href="http://www.ralinwi.com/" target="_blank" title="Ralinwi") Ralinwi]
+
+
