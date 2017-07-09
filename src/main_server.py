@@ -1,12 +1,11 @@
 from flask import Flask, request
-from .logger import enc_logger
 import logging
 import yaml
 
-app = Flask("OAuth2")
-config_file = 'config/OAuth2.yml'
-with open(config_file, 'r') as f:
-    config = yaml.load(f)
+from .logger import enc_logger
+from .models.models import User
+from globe import config, app
+from .utils.utilities import salting
 
 enc_logger(logging.getLogger('werkzeug'), config.get('log'))
 
@@ -17,8 +16,15 @@ def oauth2():
 
 @app.route('/oauth2/authorise', methods='POST')
 def authorise():
-    
-    return "authorise"
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    c_user = User.query.filter_by(username=username).first()
+    if check_password(password, c_user, c_salt):
+        return "Password is correct"
+    else:
+        return "Password is wrong"
 
 @app.route('/oauth2/token')
 def issue_token():
