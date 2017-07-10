@@ -5,8 +5,8 @@ from ..globe import config
 
 config = config.get('security')
 
-def generate_random_salt(length=None):
-    '''Generate random string using as salt
+def generate_random_string(length=None):
+    '''Generate random string
     @ length: the length of the salt, default is configured in config file
     % Salt string in string
     '''

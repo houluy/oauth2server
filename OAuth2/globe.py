@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+import yaml
 
 config_file = 'config/OAuth2.yml'
 with open(config_file, 'r') as f:

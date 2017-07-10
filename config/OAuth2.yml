@@ -23,10 +23,14 @@ model:
     email_len: 256
 
 security:
-    global_salt: 
+    global_salt: 'test'
     salt_len: 32
 
 token:
-    issuer:
-    audiance:
-    expiration: 72000 #Seconds 3600 * 20
+    issuer: issuer
+    audience: audience
+    expiration: 
+        access_token: 86400 #Seconds 3600 * 24
+        refressh_token: 2592000 #Seconds 3600 * 24 * 30
+    not_before: 3600 #Seconds
+    server_key_file: 'credentials/server.key'
