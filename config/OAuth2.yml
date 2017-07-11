@@ -16,6 +16,11 @@ db_config:
     db_host: your_db_host
     db_name: your_db_name
 
+redis_config:
+    password: ~
+    host: localhost
+    port: 6379
+
 model:
     uid_len: 32
     username_len: 32
@@ -33,4 +38,7 @@ token:
         access_token: 86400 #Seconds 3600 * 24
         refressh_token: 2592000 #Seconds 3600 * 24 * 30
     not_before: 3600 #Seconds
-    server_key_file: 'credentials/server.key'
+    server_key_file: 'credentials/example_server.key'
+
+other:
+    state_expiration: 3600 #Seconds

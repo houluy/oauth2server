@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('templates', filename='main.css') }}">
+        <title> Account Linking Error</title>
+    </head>
+    <body>
+        <div id='container'>
+            <form class='contact'>
+                <h3> Sorry, An error occurred when linking account with #{title}. Error:</h3>
+                <h4> {{ error }} </h4>
+                <p id='copyright'> Designed by <a href="https://houluy.github.io" target="_blank" title="LuCima">LuCima</a></p>
+            </form>
+        </div>
+    </body>
+</html>

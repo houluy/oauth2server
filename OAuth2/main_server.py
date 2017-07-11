@@ -1,22 +1,37 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import logging
 import yaml
 
 from .logger import enc_logger
-from .models.models import User
-from .globe import config, app
+from .models.models import User, Client
+from .globe import config, app, db, cache_db
 from .utils.utilities import salting
 from .token import gen_token
 
 enc_logger(logging.getLogger('werkzeug'), config.get('log'))
+other_config = config.get('other')
 
 @app.route('/oauth2', methods='GET')
 def oauth2():
+    grant_type = request.args.get('grant_type')
     redirect_uri = request.args.get('redirect_uri')
     state = request.args.get('code')
-    if not redirect_uri or not state:
+    client_id = request.args.get('client_id')
+    client_secret = request.args.get('client_secret')
+    scope = request.args.get('scope')
+
+    if not redirect_uri or not state or not client_id or not grant_type:
         return "Parameter not enough"
-    return "Hello"
+    
+    client = Client.query.filter_by(client_id=client_id).first()
+    if not client:
+        return "Client ID has not registered yet"
+
+    client_name = client.company_name
+    pipeline = cache_db.pipeline()
+    key = "client_id{}".format(client_id)
+    pipeline.set(key, state).expireat(key, other_config.get('state_expiration')).execute()
+    return render_template('login.html', entries=entries)
 
 @app.route('/oauth2/authorise', methods='POST')
 def authorise():

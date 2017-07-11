@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('templates', filename='main.css') }}">
+        <title>Account Linking</title>
+    </head>
+    <body>
+        <div id='container'>
+            <form class='contact' name="input" method="post" enctype="application/x-www-form-urlencoded">
+                <h3> You are linking account with {{ title }}</h3>
+                <h4> Please input your {{ company }} account:</h4>
+                <fieldset>
+                    <input name="username" placeholder="your username" type="text" tabindex="1" required autofocus>
+                </fieldset>
+                <fieldset>
+                    <input name="password" placeholder="your password" type="password" tabindex="2" required>
+                </fieldset>
+                <fieldset>
+                    <input name="clientId" type="hidden" value=""+client_id>
+                </fieldset>
+                <fieldset>
+                    <input name="redirectUri" type="hidden" value=""+redirect_uri>
+                </fieldset>
+                <fieldset>
+                    <button class='contact-submit' name="submit" type="submit" data-submit="...Sending"> Submit </button>
+                </fieldset>
+                <p id='copyright'>Designed by <a href="https://houluy.github.io" target="_blank" title="LuCima">LuCima</a></p>
+            </form>
+        </div>
+    </body>
+</html>
+
+
