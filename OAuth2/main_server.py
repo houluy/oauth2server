@@ -11,7 +11,7 @@ from .token import gen_token
 enc_logger(logging.getLogger('werkzeug'), config.get('log'))
 other_config = config.get('other')
 
-@app.route('/oauth2', methods='GET')
+@app.route('/oauth2', methods=['GET'])
 def oauth2():
     grant_type = request.args.get('grant_type')
     redirect_uri = request.args.get('redirect_uri')
@@ -33,7 +33,7 @@ def oauth2():
     pipeline.set(key, state).expireat(key, other_config.get('state_expiration')).execute()
     return render_template('login.html', entries=entries)
 
-@app.route('/oauth2/authorise', methods='POST')
+@app.route('/oauth2/authorise', methods=['POST'])
 def authorise():
 
     username = request.form.get('username')
@@ -45,7 +45,7 @@ def authorise():
     else:
         return "Password is wrong"
 
-@app.route('/oauth2/token', method='POST')
+@app.route('/oauth2/token', methods=['POST'])
 def issue_token():
     access_token = gen_token() #Custom data is allowed
     refresh_token = gen_token(typ='refresh_token')
