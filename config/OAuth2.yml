@@ -36,7 +36,7 @@ token:
     audience: audience
     expiration: 
         access_token: 86400 #Seconds 3600 * 24
-        refressh_token: 2592000 #Seconds 3600 * 24 * 30
+        refresh_token: 2592000 #Seconds 3600 * 24 * 30
     not_before: 3600 #Seconds
     server_key_file: 'credentials/example_server.key'
 

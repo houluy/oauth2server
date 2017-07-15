@@ -20,7 +20,7 @@ def gen_token(iss=None, aud=None, sub=None, nbf=False, typ='access_token', algor
     % return the encoded token
     '''
     try:
-        key = open(config.get('server_key_file'))
+        key = open(config.get('server_key_file')).read()
     except:
         print('A server key file is required')
         sys.exit(0)
@@ -28,12 +28,13 @@ def gen_token(iss=None, aud=None, sub=None, nbf=False, typ='access_token', algor
     payload['iss'] = iss if iss else config.get('issuer') 
     payload['aud'] = aud if aud else config.get('audience')
     payload['sub'] = sub if sub else config.get('subject')
-    payload['iat'] = time.time()
+    payload['iat'] = time()
     if nbf:
         payload['nbf'] = payload.get('iat') + config.get('not_before')
     payload['fun'] = typ
     # Expiration is different between access and refresh
+    print(config.get('expiration').get(typ))
     payload['exp'] = payload.get('iat') + config.get('expiration').get(typ)
     encoded = jwt.encode(payload, key, algorithm=algorithm)
-    return encoded
+    return encoded.decode()
 

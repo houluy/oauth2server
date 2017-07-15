@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import logging
 import yaml
 
@@ -52,12 +52,12 @@ def issue_token():
     expires_in = config.get('token').get('expiration').get('access_token')
     token_type = "Bearer" #Default Bearer
 
-    return {
+    return jsonify({
         'access_token': access_token,
         'refresh_token': refresh_token,
         'expires_in': expires_in,
         'token_type': token_type,
-    }
+    })
 
 if __name__ == '__main__':
     app.run(host=host, port=port)
