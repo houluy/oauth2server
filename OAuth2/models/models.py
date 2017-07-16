@@ -5,11 +5,13 @@ class User(db.Model):
     uid = db.Column(db.String(config.get('uid_len')), primary_key=True)
     username = db.Column(db.String(config.get('username_len')))
     password = db.Column(db.String(config.get('password_len')))
+    salt = db.Column(db.String(config.get('salt_len')))
     email = db.Column(db.String(config.get('email_len')))
-    def __init__(self, uid, username, password, email=None):
+    def __init__(self, uid, username, password, salt, email=None):
         self.uid = uid
         self.username = username
         self.password = password
+        self.salt = salt
         self.email = email
 
     def __repr__(self):

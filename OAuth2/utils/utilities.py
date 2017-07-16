@@ -2,6 +2,7 @@ import hashlib
 import string
 import random
 from ..globe import config
+from .models.models import User
 
 config = config.get('security')
 
@@ -32,3 +33,13 @@ def salting(old_password, salt=None):
 def check_password(recv_password, saved_password, salt):
     recv_password = salting(recv_password, salt)
     return True if recv_password == saved_password else False
+
+def get_password_and_check(username, password):
+    '''Get saved password from database and verify it
+    @ username: username
+    @ recv_password: Received password from clients
+    % True or False
+    '''
+    c_user = User.query.filter_by(username=username).first()
+    return check_password(recv_password, c_user.password, c_user.salt):
+

@@ -25,6 +25,7 @@ model:
     uid_len: 32
     username_len: 32
     password_len: 32
+    salt_len: 32
     email_len: 256
 
 security:

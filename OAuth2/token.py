@@ -38,3 +38,14 @@ def gen_token(iss=None, aud=None, sub=None, nbf=False, typ='access_token', algor
     encoded = jwt.encode(payload, key, algorithm=algorithm)
     return encoded.decode()
 
+def form_token():
+    access_token = gen_token() #Custom data is allowed
+    refresh_token = gen_token(typ='refresh_token')
+    expires_in = config.get('token').get('expiration').get('access_token')
+    token_type = "Bearer" #Default Bearer
+    return {
+        'access_token': access_token,
+        'refresh_token': refresh_token,
+        'expires_in': expires_in,
+        'token_type': token_type,
+    }
