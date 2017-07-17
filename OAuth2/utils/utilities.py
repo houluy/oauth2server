@@ -2,7 +2,7 @@ import hashlib
 import string
 import random
 from ..globe import config
-from .models.models import User
+from ..models.models import User
 
 config = config.get('security')
 
@@ -41,5 +41,5 @@ def get_password_and_check(username, password):
     % True or False
     '''
     c_user = User.query.filter_by(username=username).first()
-    return check_password(recv_password, c_user.password, c_user.salt):
+    return check_password(recv_password, c_user.password, c_user.salt)
 

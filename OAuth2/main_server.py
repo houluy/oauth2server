@@ -32,7 +32,11 @@ def oauth2():
         pipeline = cache_db.pipeline()
         key = "client_id{}".format(client_id)
         pipeline.set(key, state).expireat(key, other_config.get('state_expiration')).execute()
-        return render_template('login.html', entries=entries)
+        entries = {
+            'title': client_name,
+            'company': client_name,
+        }
+        return render_template('login.html', **entries)
     elif (grant_type == 'password'):
         username = request.args.get('username')
         password = request.args.get('password')

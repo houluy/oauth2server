@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
     <head>
-        <link rel=stylesheet type=text/css href="{{ url_for('templates', filename='main.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style/main.css') }}">
         <title>Account Linking</title>
     </head>
     <body>
-        <div id='container'>
-            <form class='contact' name="input" method="post" enctype="application/x-www-form-urlencoded">
+        <div class='container'>
+            <form id='contact' name="input" method="post" enctype="application/x-www-form-urlencoded" action='/oauth2/authorise'>
                 <h3> You are linking account with {{ title }}</h3>
                 <h4> Please input your {{ company }} account:</h4>
                 <fieldset>
@@ -24,7 +24,7 @@
                 <fieldset>
                     <button class='contact-submit' name="submit" type="submit" data-submit="...Sending"> Submit </button>
                 </fieldset>
-                <p id='copyright'>Designed by <a href="https://houluy.github.io" target="_blank" title="LuCima">LuCima</a></p>
+                <p class='copyright'>Designed by <a href="https://houluy.github.io" target="_blank" title="LuCima">LuCima</a></p>
             </form>
         </div>
     </body>
